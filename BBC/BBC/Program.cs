@@ -12,19 +12,19 @@ namespace BBC
     {
         static void Main(string[] args)
         {
-            string Genmessage = "fuckthis";
 
-            Block genblock = new Block("0", Genmessage);
-            Block block2 = new Block(genblock.blockHash, "mess2");
-            Block block3 = new Block(block2.blockHash, "sUkkkaaa");
+            Block genblock = new Block("0", "this is the gen block");
+            Block block2 = new Block(genblock.CurrentBlockHash(), "mess2");
+            Block block3 = new Block(block2.CurrentBlockHash(), "sUkkkaaa");    
+            
 
             Console.WriteLine("this is the genblockcode ");
-            Console.WriteLine(genblock.data);
-            Console.Write(genblock.blockHash);
+            Console.WriteLine(genblock.currentblockData());
+            Console.Write(genblock.CurrentBlockHash());
 
             Console.WriteLine("this is the second block");
-            Console.WriteLine(block2.blockHash);
-            Console.WriteLine(block3.blockHash);
+            Console.WriteLine(block2.CurrentBlockHash());
+            Console.WriteLine(block3.CurrentBlockHash());
 
 
 

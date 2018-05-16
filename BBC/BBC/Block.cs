@@ -11,8 +11,8 @@ namespace BBC
     {
         Times timeStamp = new Times();
         private string previousHash { get; set; }
-        public string data { get; set; }
-        public string blockHash { get; set; }
+        private string data { get; set; }
+        private string blockHash { get; set; }
 
         public Block(string previousHash, string data)
         {
@@ -24,6 +24,14 @@ namespace BBC
             this.blockHash = Hashing(contens + previousHash);
 
         }
+        public string currentblockData()
+        {
+            return data;
+        }
+        public string CurrentBlockHash()
+        {
+            return blockHash;
+        }
 
         public string Hashing(string mess1)
         {
@@ -32,6 +40,7 @@ namespace BBC
             string result = BitConverter.ToString(MessageHashed).Replace("-", "");
             return result;
         }
+
 
 
     }
