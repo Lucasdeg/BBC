@@ -17,16 +17,16 @@ namespace BBC
 
         }
 
-        public Block GenerateBlock()
-        {
-            if (LastBlock == null)
-            {
-                return new Block();
-            }
-            else
-            {
+        //public Block GenerateBlock(string data)
+        //{
+        //    if (LastBlock == null)
+        //    {
+        //        return new Block();
+        //    }
+        //    else
+        //    {
 
-            }
-        }
+        //    }
+        //}
     }
 }
