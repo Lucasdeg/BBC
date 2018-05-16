@@ -15,8 +15,6 @@ namespace BBC
         public String PrintTimeStamp()
         {
             string TimeStamp = GetTimestamp(DateTime.Now);
-            Console.WriteLine(GetTimestamp(DateTime.Now));
-            Console.ReadKey();
             return TimeStamp;
         }
     }

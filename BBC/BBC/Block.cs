@@ -9,6 +9,7 @@ namespace BBC
 {
     class Block
     {
+        Times timeStamp = new Times();
         private string previousHash { get; set; }
         public string data { get; set; }
         public string blockHash { get; set; }
@@ -16,7 +17,7 @@ namespace BBC
         public Block(string previousHash, string data)
         {
             this.previousHash = previousHash;
-            this.data = data;
+            this.data = timeStamp.PrintTimeStamp() + " " + data;
 
             string contens = Hashing(data).ToString();
 
