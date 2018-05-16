@@ -12,12 +12,10 @@ namespace BBC
     {
         static void Main(string[] args)
         {
-
             Block genblock = new Block("0", "this is the gen block");
             Block block2 = new Block(genblock.CurrentBlockHash(), "mess2");
-            Block block3 = new Block(block2.CurrentBlockHash(), "sUkkkaaa");    
+            Block block3 = new Block(block2.CurrentBlockHash(), "sUkkkaaa");
             
-
             Console.WriteLine("this is the genblockcode ");
             Console.WriteLine(genblock.currentblockData());
             Console.Write(genblock.CurrentBlockHash());
@@ -25,12 +23,8 @@ namespace BBC
             Console.WriteLine("this is the second block");
             Console.WriteLine(block2.CurrentBlockHash());
             Console.WriteLine(block3.CurrentBlockHash());
-
-
-
+            
             Console.ReadKey();
-
-
         }
     }
 }
