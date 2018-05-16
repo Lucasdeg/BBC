@@ -12,6 +12,14 @@ namespace BBC
     {
         static void Main(string[] args)
         {
+
+
+
+        }
+    }
+}
+
+            /*
             if ((args.Length == 3) && (args[0].Equals("k")))
             {
                 // Generate a new key pair
