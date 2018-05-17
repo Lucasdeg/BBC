@@ -1,12 +1,10 @@
 ﻿using System;
-using BBC;
-
 
 
 
 namespace BBC
 {
-    public class BlockFactory
+    public class BlockFactory : IFactory<Block, string>
     {
         int IndexOfCurrentBlock = 0;
 
@@ -17,16 +15,21 @@ namespace BBC
 
         }
 
-        //public Block GenerateBlock(string data)
-        //{
-        //    if (LastBlock == null)
-        //    {
-        //        return new Block();
-        //    }
-        //    else
-        //    {
+        public Block Generate(string data)
+        {
+            Block block;
+            if (LastBlock == null)
+            {
+                block = new Block(string.Empty, data);
+            }
+            else
+            {
+                block = new Block(LastBlock.blockHash, data);
+            }
+            IndexOfCurrentBlock++;
+            LastBlock = block;
 
-        //    }
-        //}
+            return block;
+        }
     }
 }

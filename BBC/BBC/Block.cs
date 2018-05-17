@@ -7,12 +7,12 @@ using System.Security.Cryptography;
 
 namespace BBC
 {
-    class Block
+    public class Block
     {
         Times timeStamp = new Times();
         private string previousHash { get; set; }
         private string data { get; set; }
-        private string blockHash { get; set; }
+        public string blockHash { get; set; }
 
         public Block(string previousHash, string data)
         {
