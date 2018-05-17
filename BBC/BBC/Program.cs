@@ -15,6 +15,11 @@ namespace BBC
             Block genblock = new Block("0", "this is the gen block");
             Block block2 = new Block(genblock.CurrentBlockHash(), "mess2");
             Block block3 = new Block(block2.CurrentBlockHash(), "sUkkkaaa");
+
+            BlockFactory factory = new BlockFactory();
+            factory.Generate("First Block");
+            factory.Generate("Second Block");
+            factory.Generate("Third Block");
             
             Console.WriteLine("this is the genblockcode ");
             Console.WriteLine(genblock.currentblockData());

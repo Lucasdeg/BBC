@@ -10,27 +10,27 @@ namespace BBC
     public class Block
     {
         Times timeStamp = new Times();
-        private string previousHash { get; set; }
-        private string data { get; set; }
-        public string blockHash { get; set; }
+        private string PreviousHash { get; set; }
+        private string Data { get; set; }
+        public string BlockHash { get; set; }
 
         public Block(string previousHash, string data)
         {
-            this.previousHash = previousHash;
-            this.data = timeStamp.PrintTimeStamp() + " " + data;
+            PreviousHash = previousHash;
+            Data = timeStamp.PrintTimeStamp() + " " + data;
 
             string contens = Hashing(data).ToString();
 
-            this.blockHash = Hashing(contens + previousHash);
+            BlockHash = Hashing(contens + previousHash);
 
         }
         public string currentblockData()
         {
-            return data;
+            return Data;
         }
         public string CurrentBlockHash()
         {
-            return blockHash;
+            return BlockHash;
         }
 
         public string Hashing(string mess1)

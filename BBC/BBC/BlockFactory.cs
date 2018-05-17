@@ -24,7 +24,7 @@ namespace BBC
             }
             else
             {
-                block = new Block(LastBlock.blockHash, data);
+                block = new Block(LastBlock.BlockHash, data);
             }
             IndexOfCurrentBlock++;
             LastBlock = block;
