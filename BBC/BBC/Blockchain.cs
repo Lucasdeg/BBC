@@ -8,6 +8,7 @@ namespace BBC
 {
     class Blockchain
     {
+        /*
         List<Block> chain = new List<Block>();
 
         public Blockchain()
@@ -30,6 +31,7 @@ namespace BBC
             newblock.blockHash = newblock.CurrentBlockHash();
             return newblock;
         }
+        */
 
     }
 }
