@@ -21,7 +21,7 @@ namespace BBC
 
             string contens = Hashing(data).ToString();
 
-            BlockHash = Hashing(contens + previousHash);
+            BlockHash = Hashing(contens + previousHash + timeStamp.ToString());
 
         }
         public string currentblockData()
