@@ -14,20 +14,21 @@ namespace BBC
         List<Block> chain = new List<Block>();
         public Blockchain()
         {
-            chain.Insert(0,creategen());
+            chain.Insert(0,Creategen());
         }
             
         
 
-        public Block creategen()
+        public Block Creategen()
         {
-            return new Block("0", "this is the gen");
-            
+            return new Block("0", "this is the gen");   
         }
 
         public Block LatestBlock()
         {
             Console.WriteLine(this.chain[this.chain.Count-1].currentblockData());
+            //Console.WriteLine("this is the current hash:"+ this.chain[this.chain.Count - 1].CurrentBlockHash());
+            //Console.WriteLine("this is the prev has    :" + this.chain[this.chain.Count - 1].PrevHash());
             return this.chain[this.chain.Count - 1];
             
         }
@@ -37,10 +38,6 @@ namespace BBC
             NewBlock.PreviousHash = NewBlock.PreviousHash;
             this.chain.Add(NewBlock);
         } 
-
-
-
-
 
 
         /*
