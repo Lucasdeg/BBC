@@ -12,6 +12,20 @@ namespace BBC
     {
         static void Main(string[] args)
         {
+          
+            //creating the blockchain
+            Blockchain MikaBlock = new Blockchain();
+
+            //adding blocks
+            MikaBlock.AddBlock(new Block(MikaBlock.LatestBlock().CurrentBlockHash(), "data block1"));
+            MikaBlock.AddBlock(new Block(MikaBlock.LatestBlock().CurrentBlockHash(), "data block2"));
+
+            //requesting latestblock index and printing the data in the block
+            MikaBlock.LatestBlock();
+            
+
+
+            /*
             Block genblock = new Block("0", "this is the gen block");
             Block block2 = new Block(genblock.CurrentBlockHash(), "mess2");
             Block block3 = new Block(block2.CurrentBlockHash(), "sUkkkaaa");
@@ -30,6 +44,7 @@ namespace BBC
             Console.WriteLine(block3.CurrentBlockHash());
             
             Console.ReadKey();
+            */
         }
     }
 }

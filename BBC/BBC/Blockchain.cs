@@ -5,9 +5,44 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BBC
+
 {
-    class Blockchain
+
+    public class Blockchain
     {
+
+        List<Block> chain = new List<Block>();
+        public Blockchain()
+        {
+            chain.Insert(0,creategen());
+        }
+            
+        
+
+        public Block creategen()
+        {
+            return new Block("0", "this is the gen");
+            
+        }
+
+        public Block LatestBlock()
+        {
+            Console.WriteLine(this.chain[this.chain.Count-1].currentblockData());
+            return this.chain[this.chain.Count - 1];
+            
+        }
+
+        public void AddBlock(Block NewBlock)
+        {
+            NewBlock.PreviousHash = NewBlock.PreviousHash;
+            this.chain.Add(NewBlock);
+        } 
+
+
+
+
+
+
         /*
         List<Block> chain = new List<Block>();
 

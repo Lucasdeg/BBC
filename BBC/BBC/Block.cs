@@ -10,7 +10,7 @@ namespace BBC
     public class Block
     {
         Times timeStamp = new Times();
-        private string PreviousHash { get; set; }
+        public string PreviousHash { get; set; }
         private string Data { get; set; }
         public string BlockHash { get; set; }
 
@@ -27,6 +27,11 @@ namespace BBC
         public string currentblockData()
         {
             return Data;
+        }
+
+        public string PrevHash()
+        {
+            return PreviousHash;
         }
         public string CurrentBlockHash()
         {
