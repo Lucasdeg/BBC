@@ -20,11 +20,11 @@ namespace BBC
             Block block;
             if (LastBlock == null)
             {
-                block = new Block(string.Empty, data);
+                block = new Block(0,string.Empty, data);
             }
             else
             {
-                block = new Block(LastBlock.BlockHash, data);
+                block = new Block(IndexOfCurrentBlock,LastBlock.CurrentBlockHash(), data);
             }
             IndexOfCurrentBlock++;
             LastBlock = block;

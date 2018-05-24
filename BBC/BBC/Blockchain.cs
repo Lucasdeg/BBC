@@ -21,7 +21,7 @@ namespace BBC
 
         public Block Creategen()
         {
-            return new Block("0", "this is the gen");   
+            return new Block(0, "this is the gen","");   
         }
 
         public Block LatestBlock()
@@ -39,31 +39,27 @@ namespace BBC
             this.chain.Add(NewBlock);
         } 
 
-
-        /*
-        List<Block> chain = new List<Block>();
-
-        public Blockchain()
+        public bool IsChainValid()
         {
-            this.chain = 
+            //return true;
+            for (int i = 1; i < this.chain.Count; i++)
+            {
+                Block currentblock = this.chain[i];
+                Block previousblock = this.chain[i - 1];
+                if (currentblock.PrevHash() != previousblock.CurrentBlockHash())
+                {
+                    Console.WriteLine("the hash of the previous block does not match the pervious hash of this block");
+                    return false;
+                }
+                /*if (currentblock.BlockHash != currentblock.Hashing(currentblock.PrevHash() )) 
+                {
+                    Console.WriteLine("The currentblock hash does not have the same hash as the calculated hash");
+                    return false;
+                }
+                */
+            }
+            Console.WriteLine("The blockchain is valid");
+            return true;
         }
-
-
-        public  Block Genblock()
-        {
-            return new Block("0", "This is the gen");
-        }
-        public Block GetLast()
-        {
-            return chain[chain.Count-1];
-        }
-        public Block Addblock(Block newblock)
-        {
-            newblock.previousHash = GetLast().blockHash;
-            newblock.blockHash = newblock.CurrentBlockHash();
-            return newblock;
-        }
-        */
-
     }
 }
