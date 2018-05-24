@@ -27,7 +27,7 @@ namespace BBC
         //requesting the latesblock in the blockchain
         public Block LatestBlock()
         {
-            Console.WriteLine(this.chain[this.chain.Count-1].currentblockData());
+            Console.WriteLine(this.chain[this.chain.Count-1].CurrentBlockData());
             //Console.WriteLine("this is the current hash:"+ this.chain[this.chain.Count - 1].CurrentBlockHash());
             //Console.WriteLine("this is the prev has    :" + this.chain[this.chain.Count - 1].PrevHash());
             return this.chain[this.chain.Count - 1];
@@ -37,7 +37,7 @@ namespace BBC
         //a function with the posibility to add a new block;
         public void AddBlock(Block NewBlock)
         {
-            NewBlock.PreviousHash = NewBlock.PreviousHash;
+            NewBlock.previoushash = NewBlock.previoushash;
             this.chain.Add(NewBlock);
         } 
 
@@ -49,7 +49,7 @@ namespace BBC
             {
                 Block currentblock = this.chain[i];
                 Block previousblock = this.chain[i - 1];
-                if (currentblock.PrevHash() != previousblock.CurrentBlockHash())
+                if (currentblock.PreviousHash() != previousblock.CurrentBlockHash())
                 {
                     Console.WriteLine("the hash of the previous block does not match the pervious hash of this block");
                     return false;

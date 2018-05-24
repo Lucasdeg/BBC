@@ -9,39 +9,39 @@ namespace BBC
 {
     public class Block
     {
-        public string Time { get; set; }
+        public string time { get; set; }
         public int index { get; set; }
-        public string PreviousHash { get; set; }
+        public string previoushash { get; set; }
         private string data { get; set; }
-        public string currentHash { get; set; }
+        public string currenthash { get; set; }
 
-        public Block(int index , string data ,  string PreviousHash , string Time)
+        public Block(int index , string data ,  string previousHash , string time)
         {
             this.index = index;
             this.data = data;
-            this.PreviousHash = PreviousHash;
-            this.currentHash = this.CalcHash();
-            this.Time = Time;
+            this.previoushash = previousHash;
+            this.currenthash = this.CalcHash();
+            this.time = time;
 
         }
         public string CalcHash()
         {
             SHA256 sha256 = SHA256.Create();
-            byte[] messagehashed = sha256.ComputeHash(Encoding.UTF8.GetBytes((this.index + this.PreviousHash)));
+            byte[] messagehashed = sha256.ComputeHash(Encoding.UTF8.GetBytes((this.index + this.previoushash)));
             return BitConverter.ToString(messagehashed);
         }
 
-        public string currentblockData()
+        public string CurrentBlockData()
         {
             return data;
         }
-        public string PrevHash()
+        public string PreviousHash()
         {
-            return PreviousHash;
+            return previoushash;
         }
         public string CurrentBlockHash()
         {
-            return currentHash;
+            return currenthash;
         }
 
 /* 
