@@ -10,20 +10,21 @@ namespace BBC
 
     public class Blockchain
     {
-
         List<Block> chain = new List<Block>();
+
         public Blockchain()
         {
             chain.Insert(0,Creategen());
         }
             
         
-
+        //creating the genesis block
         public Block Creategen()
         {
-            return new Block(0, "this is the gen","");   
+            return new Block(0, "this is the gen","", "24/5/2018");   
         }
 
+        //requesting the latesblock in the blockchain
         public Block LatestBlock()
         {
             Console.WriteLine(this.chain[this.chain.Count-1].currentblockData());
@@ -32,13 +33,15 @@ namespace BBC
             return this.chain[this.chain.Count - 1];
             
         }
-
+    
+        //a function with the posibility to add a new block;
         public void AddBlock(Block NewBlock)
         {
             NewBlock.PreviousHash = NewBlock.PreviousHash;
             this.chain.Add(NewBlock);
         } 
 
+        //a function to check the blockchain valid
         public bool IsChainValid()
         {
             //return true;
@@ -51,12 +54,14 @@ namespace BBC
                     Console.WriteLine("the hash of the previous block does not match the pervious hash of this block");
                     return false;
                 }
-                /*if (currentblock.BlockHash != currentblock.Hashing(currentblock.PrevHash() )) 
+                
+                if (currentblock.CurrentBlockHash() != currentblock.CalcHash()) 
                 {
                     Console.WriteLine("The currentblock hash does not have the same hash as the calculated hash");
                     return false;
                 }
-                */
+                
+                
             }
             Console.WriteLine("The blockchain is valid");
             return true;
