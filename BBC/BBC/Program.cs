@@ -17,7 +17,7 @@ namespace BBC
             Blockchain MikaBlock = new Blockchain();
 
             //adding blocks
-            MikaBlock.AddBlock(new Block(1, "data block1", MikaBlock.LatestBlock().CurrentBlockHash(),"24/5/2018"));
+            MikaBlock.AddBlock(new Block(1, "data block1", MikaBlock.LatestBlock().CurrentBlockHash(),"20/5/2018"));
             MikaBlock.AddBlock(new Block(2, "data block2", MikaBlock.LatestBlock().CurrentBlockHash(),"24/5/2018"));
 
             //requesting latestblock index and printing the data in the block

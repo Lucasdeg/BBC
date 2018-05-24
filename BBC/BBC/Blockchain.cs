@@ -60,8 +60,6 @@ namespace BBC
                     Console.WriteLine("The currentblock hash does not have the same hash as the calculated hash");
                     return false;
                 }
-                
-                
             }
             Console.WriteLine("The blockchain is valid");
             return true;
