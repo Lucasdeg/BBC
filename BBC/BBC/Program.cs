@@ -12,17 +12,23 @@ namespace BBC
     {
         static void Main(string[] args)
         {
-          
+            Times timestamp = new Times();
             //creating the blockchain
             Blockchain MikaBlock = new Blockchain();
 
             //adding blocks
-            MikaBlock.AddBlock(new Block(1, "data block1", MikaBlock.LatestBlock().CurrentBlockHash(),"20/5/2018"));
+            MikaBlock.AddBlock(new Block(1, "data block1", MikaBlock.LatestBlock().CurrentBlockHash(), "20/5/2018"));
+            MikaBlock.CurrentBlockPrinter();
             MikaBlock.AddBlock(new Block(2, "data block2", MikaBlock.LatestBlock().CurrentBlockHash(),"24/5/2018"));
-
-            //requesting latestblock index and printing the data in the block
-            MikaBlock.LatestBlock();
+            MikaBlock.CurrentBlockPrinter();
+            MikaBlock.AddBlock(new Block(3, "data block3", MikaBlock.LatestBlock().CurrentBlockHash(), "30/5/2018"));
+            MikaBlock.CurrentBlockPrinter();
+            MikaBlock.AddBlock(new Block(4, "made this second", MikaBlock.LatestBlock().CurrentBlockHash(), timestamp.GetTimestamp(DateTime.Now)));
+            MikaBlock.CurrentBlockPrinter();
+            MikaBlock.AddBlock(new Block(3, "made newer", MikaBlock.LatestBlock().CurrentBlockHash(),"32/5/2018"));
+            MikaBlock.CurrentBlockPrinter();
             
+
             //checking if the blockchain is tampered with
             MikaBlock.IsChainValid();
 

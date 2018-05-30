@@ -27,11 +27,19 @@ namespace BBC
         //requesting the latesblock in the blockchain
         public Block LatestBlock()
         {
-            Console.WriteLine(this.chain[this.chain.Count-1].CurrentBlockData());
-            //Console.WriteLine("this is the current hash:"+ this.chain[this.chain.Count - 1].CurrentBlockHash());
-            //Console.WriteLine("this is the prev has    :" + this.chain[this.chain.Count - 1].PrevHash());
+            //Console.WriteLine(this.chain[this.chain.Count - 1 ].CurrentBlockData());
             return this.chain[this.chain.Count - 1];
             
+        }
+
+        //printing everthing in the block
+        public void CurrentBlockPrinter()
+        {
+            Console.WriteLine("Index:........." + this.chain[this.chain.Count - 1].index);
+            Console.WriteLine("Timestamp:....." + this.chain[this.chain.Count - 1].time);
+            Console.WriteLine("Currentdata:..." + this.chain[this.chain.Count - 1].CurrentBlockData());
+            Console.WriteLine("CurrentHash:..." + this.chain[this.chain.Count - 1].CurrentBlockHash());
+            Console.WriteLine("PreviousHash:.." +this.chain[this.chain.Count - 1].PreviousHash());
         }
     
         //a function with the posibility to add a new block;
@@ -40,6 +48,17 @@ namespace BBC
             NewBlock.previoushash = NewBlock.previoushash;
             this.chain.Add(NewBlock);
         } 
+
+        public int BlockchainLength()
+        {
+            int counter = 0;
+            for (int i = 1; i < this.chain.Count; i++)
+            {
+                counter++;
+            }
+            Console.WriteLine(counter);
+            return counter;
+        }
 
         //a function to check the blockchain valid
         public bool IsChainValid()
@@ -52,6 +71,11 @@ namespace BBC
                 if (currentblock.PreviousHash() != previousblock.CurrentBlockHash())
                 {
                     Console.WriteLine("the hash of the previous block does not match the pervious hash of this block");
+                    return false;
+                }
+                if(currentblock.index <= previousblock.index)
+                {
+                    Console.WriteLine("the current index cannot be the same length as one of the previous ones");
                     return false;
                 }
                 
