@@ -10,7 +10,7 @@ namespace BBC
     {
         public String GetTimestamp(DateTime value)
         {
-            return value.ToString("dd/MM/yyyy");
+            return value.ToString("dd/MM/yyyy...HH:mm");
         }
         public String PrintTimeStamp()
         {

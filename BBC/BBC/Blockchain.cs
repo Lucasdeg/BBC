@@ -75,7 +75,7 @@ namespace BBC
                 }
                 if(currentblock.index <= previousblock.index)
                 {
-                    Console.WriteLine("the current index cannot be the same length as one of the previous ones");
+                    Console.WriteLine("the current index cannot be the same or smaller as one of the previous ones");
                     return false;
                 }
                 

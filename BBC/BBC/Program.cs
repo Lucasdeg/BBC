@@ -17,15 +17,15 @@ namespace BBC
             Blockchain MikaBlock = new Blockchain();
 
             //adding blocks
-            MikaBlock.AddBlock(new Block(1, "data block1", MikaBlock.LatestBlock().CurrentBlockHash(), "20/5/2018"));
+            MikaBlock.AddBlock(new Block(1, "data block1", MikaBlock.LatestBlock().CurrentBlockHash(), "20-5-2018...12:00"));
             MikaBlock.CurrentBlockPrinter();
-            MikaBlock.AddBlock(new Block(2, "data block2", MikaBlock.LatestBlock().CurrentBlockHash(),"24/5/2018"));
+            MikaBlock.AddBlock(new Block(2, "data block2", MikaBlock.LatestBlock().CurrentBlockHash(),"24-5-2018...9:10"));
             MikaBlock.CurrentBlockPrinter();
-            MikaBlock.AddBlock(new Block(3, "data block3", MikaBlock.LatestBlock().CurrentBlockHash(), "30/5/2018"));
+            MikaBlock.AddBlock(new Block(3, "data block3", MikaBlock.LatestBlock().CurrentBlockHash(), "30-5-2018...10:20"));
             MikaBlock.CurrentBlockPrinter();
             MikaBlock.AddBlock(new Block(4, "made this second", MikaBlock.LatestBlock().CurrentBlockHash(), timestamp.GetTimestamp(DateTime.Now)));
             MikaBlock.CurrentBlockPrinter();
-            MikaBlock.AddBlock(new Block(3, "made newer", MikaBlock.LatestBlock().CurrentBlockHash(),"32/5/2018"));
+            MikaBlock.AddBlock(new Block(5, "made newer", MikaBlock.LatestBlock().CurrentBlockHash(),"32-5-2018...55:55"));
             MikaBlock.CurrentBlockPrinter();
             
 
