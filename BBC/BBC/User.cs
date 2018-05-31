@@ -8,23 +8,20 @@ namespace BBC
 {
     public class User
     {
-        public string username { get; set; }
+        public string Username { get; set; }
 
-        public int id { get; set; }
+        public int Id { get; set; }
 
-        public string password { get; set; }
+        public string Password { get; set; }
 
-        public int roleId { get; set; }
+        public int RoleId { get; set; }
 
         public User(string username, int id, string password, int roleid)
         {
-            username = username;
-            id = id;
-            password = password;
-            roleId = roleid;
+            Username = username;
+            Id = id;
+            Password = password;
+            RoleId = roleid;
         }
-
-
-
     }
 }

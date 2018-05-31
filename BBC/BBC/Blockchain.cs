@@ -10,11 +10,11 @@ namespace BBC
 
     public class Blockchain
     {
-        List<Block> chain = new List<Block>();
+        LinkedList<Block> chain = new LinkedList<Block>();
 
         public Blockchain()
         {
-            chain.Insert(0,Creategen());
+            chain.AddLast(Creategen());
         }
             
         
@@ -28,25 +28,25 @@ namespace BBC
         public Block LatestBlock()
         {
             //Console.WriteLine(this.chain[this.chain.Count - 1 ].CurrentBlockData());
-            return this.chain[this.chain.Count - 1];
+            return chain.Last.Value;
             
         }
 
         //printing everthing in the block
         public void CurrentBlockPrinter()
         {
-            Console.WriteLine("Index:........." + this.chain[this.chain.Count - 1].index);
-            Console.WriteLine("Timestamp:....." + this.chain[this.chain.Count - 1].time);
-            Console.WriteLine("Currentdata:..." + this.chain[this.chain.Count - 1].CurrentBlockData());
-            Console.WriteLine("CurrentHash:..." + this.chain[this.chain.Count - 1].CurrentBlockHash());
-            Console.WriteLine("PreviousHash:.." +this.chain[this.chain.Count - 1].PreviousHash());
+            Console.WriteLine("Index:........." + chain.Last.Value.index);
+            Console.WriteLine("Timestamp:....." + chain.Last.Value.time);
+            Console.WriteLine("Currentdata:..." + chain.Last.Value.CurrentBlockData());
+            Console.WriteLine("CurrentHash:..." + chain.Last.Value.CurrentBlockHash());
+            Console.WriteLine("PreviousHash:.." + chain.Last.Value.PreviousHash());
         }
     
         //a function with the posibility to add a new block;
         public void AddBlock(Block NewBlock)
         {
             NewBlock.previoushash = NewBlock.previoushash;
-            this.chain.Add(NewBlock);
+            this.chain.AddLast(NewBlock);
         } 
 
         public int BlockchainLength()
@@ -66,8 +66,8 @@ namespace BBC
             //return true;
             for (int i = 1; i < this.chain.Count; i++)
             {
-                Block currentblock = this.chain[i];
-                Block previousblock = this.chain[i - 1];
+                Block currentblock = chain.Where(x => x.index == i).First();
+                Block previousblock = chain.Where(x => x.index == i-1).First();
                 if (currentblock.PreviousHash() != previousblock.CurrentBlockHash())
                 {
                     Console.WriteLine("the hash of the previous block does not match the pervious hash of this block");

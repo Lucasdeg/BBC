@@ -32,7 +32,7 @@ namespace BBC
             //checking if the blockchain is tampered with
             MikaBlock.IsChainValid();
 
-
+            Console.ReadKey();
 
             /*
             Block genblock = new Block("0", "this is the gen block");
