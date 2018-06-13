@@ -31,6 +31,20 @@ namespace BBC
             return chain.Last.Value;
             
         }
+        public int LatestBlockIndex()
+        {
+            return chain.Last.Value.index;
+        }
+        public void AllBlocks()
+        {
+            foreach (var data in chain)
+            {
+                Console.WriteLine("Block " + data.index + " message");
+                Console.WriteLine( data.CurrentBlockData());
+                Console.WriteLine("----------------------");
+            }
+            ;
+        }
 
         //printing everthing in the block
         public void CurrentBlockPrinter()

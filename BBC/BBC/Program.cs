@@ -15,24 +15,37 @@ namespace BBC
             Times timestamp = new Times();
             //creating the blockchain
             Blockchain MikaBlock = new Blockchain();
-
             //adding blocks
             MikaBlock.AddBlock(new Block(1, "data block1", MikaBlock.LatestBlock().CurrentBlockHash(), "20-5-2018...12:00"));
-            MikaBlock.CurrentBlockPrinter();
-            MikaBlock.AddBlock(new Block(2, "data block2", MikaBlock.LatestBlock().CurrentBlockHash(),"24-5-2018...9:10"));
-            MikaBlock.CurrentBlockPrinter();
+            MikaBlock.AddBlock(new Block(2, "data block2", MikaBlock.LatestBlock().CurrentBlockHash(), "24-5-2018...9:10"));
             MikaBlock.AddBlock(new Block(3, "data block3", MikaBlock.LatestBlock().CurrentBlockHash(), "30-5-2018...10:20"));
-            MikaBlock.CurrentBlockPrinter();
             MikaBlock.AddBlock(new Block(4, "made this second", MikaBlock.LatestBlock().CurrentBlockHash(), timestamp.GetTimestamp(DateTime.Now)));
-            MikaBlock.CurrentBlockPrinter();
-            MikaBlock.AddBlock(new Block(5, "made newer", MikaBlock.LatestBlock().CurrentBlockHash(),"32-5-2018...55:55"));
-            MikaBlock.CurrentBlockPrinter();
-            
+            MikaBlock.AddBlock(new Block(5, "made newer", MikaBlock.LatestBlock().CurrentBlockHash(), "32-5-2018...55:55"));           
 
-            //checking if the blockchain is tampered with
-            MikaBlock.IsChainValid();
+            int x = 0;
+            while (x==0)
+            {
 
-            Console.ReadKey();
+                Console.WriteLine("Welcome to the BigBlockChain");
+                Console.WriteLine("What do you want to do?");
+                Console.WriteLine("press[q] to exit, press[r] to read the block, press[a] to add a block");
+                string s = Console.ReadLine();
+                if (s == "q")
+                {
+                    x = 1;
+                }
+                else if (s == "r")
+                {
+                    MikaBlock.AllBlocks();
+                    //checking if the blockchain is tampered with
+                    MikaBlock.IsChainValid();
+                }
+                else if (s == "a")
+                {
+                    string message = Console.ReadLine();
+                    MikaBlock.AddBlock(new Block(MikaBlock.LatestBlockIndex() + 1, message, MikaBlock.LatestBlock().CurrentBlockHash(), timestamp.GetTimestamp(DateTime.Now)));
+                }
+            }
 
             /*
             Block genblock = new Block("0", "this is the gen block");

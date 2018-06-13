@@ -12,7 +12,7 @@ namespace BBC
         public string time { get; set; }
         public int index { get; set; }
         public string previoushash { get; set; }
-        private string data { get; set; }
+        public string data { get; set; }
         public string currenthash { get; set; }
 
         public Block(int index , string data ,  string previousHash , string time)
