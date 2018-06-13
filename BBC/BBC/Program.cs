@@ -28,7 +28,7 @@ namespace BBC
 
                 Console.WriteLine("Welcome to the BigBlockChain");
                 Console.WriteLine("What do you want to do?");
-                Console.WriteLine("press[q] to exit, press[r] to read the block, press[a] to add a block");
+                Console.WriteLine("press[q] to exit, press[r] to read the block, press[a] to add a block, press[c] to get the current block");
                 string s = Console.ReadLine();
                 if (s == "q")
                 {
@@ -44,6 +44,10 @@ namespace BBC
                 {
                     string message = Console.ReadLine();
                     MikaBlock.AddBlock(new Block(MikaBlock.LatestBlockIndex() + 1, message, MikaBlock.LatestBlock().CurrentBlockHash(), timestamp.GetTimestamp(DateTime.Now)));
+                }
+                else if (s == "c")
+                {
+                    MikaBlock.CurrentBlockPrinter();
                 }
             }
 
