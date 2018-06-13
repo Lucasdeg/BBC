@@ -12,12 +12,24 @@ namespace BBC
     {
         LinkedList<Block> chain = new LinkedList<Block>();
 
+        LinkedList<Transaction> currentTransactions = new LinkedList<Transaction>();
+
+
         public Blockchain()
         {
             chain.AddLast(Creategen());
         }
-            
-        
+
+
+        /*
+        public int newTransaction(string sender, string recipient, string ipfsHash)
+        {
+
+            currentTransactions.AddLast(transaction);
+            return this.chain.Last.Value.index + 1;
+        }
+        */
+
         //creating the genesis block
         public Block Creategen()
         {

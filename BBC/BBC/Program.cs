@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Net;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.IO;
@@ -10,8 +12,52 @@ namespace BBC
 {
     class Program
     {
+        static HttpListener _httpListener = new HttpListener();
+
+        static void ResponseThread()
+        {
+            while (true)
+            {
+                HttpListenerContext context = _httpListener.GetContext(); // get a context
+                                                                          // Now, you'll find the request URL in context.Request.Url
+                byte[] _responseArray = Encoding.UTF8.GetBytes("<html><head><title>Localhost server -- port 5000</title></head>" +
+                "<body>Welcome to the <strong>Localhost server</strong> -- <em>port 5000!</em></body></html>"); // get the bytes to response
+                context.Response.OutputStream.Write(_responseArray, 0, _responseArray.Length); // write bytes to the output stream
+                context.Response.KeepAlive = false; // set the KeepAlive bool to false
+                context.Response.Close(); // close the connection
+                Console.WriteLine("Response given to a request.");
+            }
+        }
+
         static void Main(string[] args)
         {
+            string value = "<h1>This is BBC</h1>";
+
+            Console.WriteLine("Starting server...");
+            _httpListener.Prefixes.Add("http://*:80/"); // add prefix "http://localhost:5000/"
+            _httpListener.Start(); // start server (Run application as Administrator!)
+            Console.WriteLine("Server started.");
+            Thread _responseThread = new Thread(ResponseThread);
+            _responseThread.Start(); // start the response thread
+
+            while (true)
+            {
+                Console.WriteLine("Waiting for a new conection...");
+                HttpListenerContext newContext = _httpListener.GetContext();
+                Console.WriteLine("Someone Connected!");
+
+                HttpListenerRequest clientRequest = newContext.Request;
+                HttpListenerResponse serverResponse = newContext.Response;
+
+                serverResponse.StatusCode = (int)HttpStatusCode.OK;
+                serverResponse.ContentType = "text/html";
+
+                Stream serverResponseOutput = serverResponse.OutputStream;
+                serverResponseOutput.Write(Encoding.Default.GetBytes(value), 0, value.Length);
+                serverResponse.Close();
+                Console.WriteLine("Response send! \n");
+            }
+
             Times timestamp = new Times();
             //creating the blockchain
             Blockchain MikaBlock = new Blockchain();
