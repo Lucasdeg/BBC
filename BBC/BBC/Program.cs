@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace BBC
 {
@@ -31,14 +32,24 @@ namespace BBC
 
         static void Main(string[] args)
         {
-            string value = "<h1>This is BBC</h1>";
+            Times timestamp = new Times();
+            //creating the blockchain
+            Blockchain MikaBlock = new Blockchain();
+            //adding blocks
+            MikaBlock.AddBlock(new Block(1, "data block1", MikaBlock.LatestBlock().CurrentBlockHash(), "20-5-2018...12:00"));
+            MikaBlock.AddBlock(new Block(2, "data block2", MikaBlock.LatestBlock().CurrentBlockHash(), "24-5-2018...9:10"));
+            MikaBlock.AddBlock(new Block(3, "data block3", MikaBlock.LatestBlock().CurrentBlockHash(), "30-5-2018...10:20"));
+            MikaBlock.AddBlock(new Block(4, "made this second", MikaBlock.LatestBlock().CurrentBlockHash(), timestamp.GetTimestamp(DateTime.Now)));
+            MikaBlock.AddBlock(new Block(5, "made newer", MikaBlock.LatestBlock().CurrentBlockHash(), "32-5-2018...55:55"));
+
+            string value = JsonConvert.SerializeObject(MikaBlock.LatestBlock().CurrentBlockData());
 
             Console.WriteLine("Starting server...");
             _httpListener.Prefixes.Add("http://*:80/"); // add prefix "http://localhost:5000/"
             _httpListener.Start(); // start server (Run application as Administrator!)
             Console.WriteLine("Server started.");
-            Thread _responseThread = new Thread(ResponseThread);
-            _responseThread.Start(); // start the response thread
+            //Thread _responseThread = new Thread(ResponseThread);
+            //_responseThread.Start(); // start the response thread
 
             while (true)
             {
@@ -58,15 +69,6 @@ namespace BBC
                 Console.WriteLine("Response send! \n");
             }
 
-            Times timestamp = new Times();
-            //creating the blockchain
-            Blockchain MikaBlock = new Blockchain();
-            //adding blocks
-            MikaBlock.AddBlock(new Block(1, "data block1", MikaBlock.LatestBlock().CurrentBlockHash(), "20-5-2018...12:00"));
-            MikaBlock.AddBlock(new Block(2, "data block2", MikaBlock.LatestBlock().CurrentBlockHash(), "24-5-2018...9:10"));
-            MikaBlock.AddBlock(new Block(3, "data block3", MikaBlock.LatestBlock().CurrentBlockHash(), "30-5-2018...10:20"));
-            MikaBlock.AddBlock(new Block(4, "made this second", MikaBlock.LatestBlock().CurrentBlockHash(), timestamp.GetTimestamp(DateTime.Now)));
-            MikaBlock.AddBlock(new Block(5, "made newer", MikaBlock.LatestBlock().CurrentBlockHash(), "32-5-2018...55:55"));           
 
             int x = 0;
             while (x==0)
