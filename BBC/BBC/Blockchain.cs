@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,12 +9,25 @@ namespace BBC
 
 {
 
-    public class Blockchain
+    public class Blockchain : ICollection<Block>
     {
         LinkedList<Block> chain = new LinkedList<Block>();
 
         LinkedList<Transaction> currentTransactions = new LinkedList<Transaction>();
 
+        public int Count => throw new NotImplementedException();
+
+        public bool IsReadOnly => throw new NotImplementedException();
+
+        public IEnumerator<Block> GetEnumerator()
+        {
+            return chain.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
+        }
 
         public Blockchain()
         {
@@ -113,6 +127,31 @@ namespace BBC
             }
             Console.WriteLine("The blockchain is valid");
             return true;
+        }
+
+        public void Add(Block item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Clear()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Contains(Block item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CopyTo(Block[] array, int arrayIndex)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Remove(Block item)
+        {
+            throw new NotImplementedException();
         }
     }
 }
