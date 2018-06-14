@@ -56,6 +56,34 @@ namespace BBC
                 Console.WriteLine("Waiting for a new conection...");
                 HttpListenerContext newContext = _httpListener.GetContext();
                 Console.WriteLine("Someone Connected!");
+                int x = 0;
+                while (x == 0)
+                {
+
+                    Console.WriteLine("Welcome to the BigBlockChain");
+                    Console.WriteLine("What do you want to do?");
+                    Console.WriteLine("press[q] to exit, press[r] to read the block, press[a] to add a block, press[c] to get the current block");
+                    string s = Console.ReadLine();
+                    if (s == "q")
+                    {
+                        x = 1;
+                    }
+                    else if (s == "r")
+                    {
+                        MikaBlock.AllBlocks();
+                        //checking if the blockchain is tampered with
+                        MikaBlock.IsChainValid();
+                    }
+                    else if (s == "a")
+                    {
+                        string message = Console.ReadLine();
+                        MikaBlock.AddBlock(new Block(MikaBlock.LatestBlockIndex() + 1, message, MikaBlock.LatestBlock().CurrentBlockHash(), timestamp.GetTimestamp(DateTime.Now)));
+                    }
+                    else if (s == "c")
+                    {
+                        MikaBlock.CurrentBlockPrinter();
+                    }
+                }
 
                 HttpListenerRequest clientRequest = newContext.Request;
                 HttpListenerResponse serverResponse = newContext.Response;
@@ -65,39 +93,13 @@ namespace BBC
 
                 Stream serverResponseOutput = serverResponse.OutputStream;
                 serverResponseOutput.Write(Encoding.Default.GetBytes(value), 0, value.Length);
-                serverResponse.Close();
+                //serverResponse.Close();
                 Console.WriteLine("Response send! \n");
             }
 
 
-            int x = 0;
-            while (x==0)
-            {
 
-                Console.WriteLine("Welcome to the BigBlockChain");
-                Console.WriteLine("What do you want to do?");
-                Console.WriteLine("press[q] to exit, press[r] to read the block, press[a] to add a block, press[c] to get the current block");
-                string s = Console.ReadLine();
-                if (s == "q")
-                {
-                    x = 1;
-                }
-                else if (s == "r")
-                {
-                    MikaBlock.AllBlocks();
-                    //checking if the blockchain is tampered with
-                    MikaBlock.IsChainValid();
-                }
-                else if (s == "a")
-                {
-                    string message = Console.ReadLine();
-                    MikaBlock.AddBlock(new Block(MikaBlock.LatestBlockIndex() + 1, message, MikaBlock.LatestBlock().CurrentBlockHash(), timestamp.GetTimestamp(DateTime.Now)));
-                }
-                else if (s == "c")
-                {
-                    MikaBlock.CurrentBlockPrinter();
-                }
-            }
+            
 
             /*
             Block genblock = new Block("0", "this is the gen block");
