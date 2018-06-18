@@ -51,7 +51,7 @@ namespace BBC
 
             foreach(Block wow in jsonblock)
             {
-                Console.WriteLine("Message: " + wow.CurrentBlockData() + "\r\n currenthash: " + wow.currenthash + "\r\n previoushash: " + wow.previoushash);
+                Console.WriteLine("Index: " + wow.index + "\r\n Message: " + wow.CurrentBlockData() + "\r\n currenthash: " + wow.currenthash + "\r\n previoushash: " + wow.previoushash + "\r\n------------");
             }
 
             //Console.WriteLine(jsonblock);
