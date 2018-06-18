@@ -42,20 +42,6 @@ namespace BBC
             MikaBlock.AddBlock(new Block(4, "made this second", MikaBlock.LatestBlock().CurrentBlockHash(), timestamp.GetTimestamp(DateTime.Now)));
             MikaBlock.AddBlock(new Block(5, "made newer", MikaBlock.LatestBlock().CurrentBlockHash(), "32-5-2018...55:55"));
 
-            string value = JsonConvert.SerializeObject(MikaBlock);//.LatestBlock());//.CurrentBlockData());
-
-            //Console.WriteLine(value);
-
-            List<Block> jsonblock = JsonConvert.DeserializeObject<List<Block>>(value);
-            //MikaBlock.AddBlock(jsonblock);
-
-            foreach(Block wow in jsonblock)
-            {
-                Console.WriteLine("Message: " + wow.CurrentBlockData() + "\r\n currenthash: " + wow.currenthash + "\r\n previoushash: " + wow.previoushash);
-            }
-
-            //Console.WriteLine(jsonblock);
-            Console.WriteLine("JsonBlock");
 
             Console.WriteLine("Starting server...");
             _httpListener.Prefixes.Add("http://*:80/"); // add prefix "http://localhost:5000/"
@@ -97,6 +83,21 @@ namespace BBC
                         MikaBlock.CurrentBlockPrinter();
                     }
                 }
+
+                string value = JsonConvert.SerializeObject(MikaBlock);//.LatestBlock());//.CurrentBlockData());
+
+                //Console.WriteLine(value);
+
+                List<Block> jsonblock = JsonConvert.DeserializeObject<List<Block>>(value);
+                //MikaBlock.AddBlock(jsonblock);
+
+                foreach (Block wow in jsonblock)
+                {
+                    Console.WriteLine("Message: " + wow.CurrentBlockData() + "\r\n currenthash: " + wow.currenthash + "\r\n previoushash: " + wow.previoushash);
+                }
+
+                //Console.WriteLine(jsonblock);
+                Console.WriteLine("JsonBlock");
 
                 HttpListenerRequest clientRequest = newContext.Request;
                 HttpListenerResponse serverResponse = newContext.Response;
