@@ -98,6 +98,21 @@ namespace BBC
                     }
                 }
 
+                /*string value2 = JsonConvert.SerializeObject(MikaBlock);//.LatestBlock());//.CurrentBlockData());
+
+                //Console.WriteLine(value);
+
+                List<Block> jsonblock2 = JsonConvert.DeserializeObject<List<Block>>(value);
+                //MikaBlock.AddBlock(jsonblock);
+
+                foreach (Block wow in jsonblock)
+                {
+                    Console.WriteLine("Message: " + wow.CurrentBlockData() + "\r\n currenthash: " + wow.currenthash + "\r\n previoushash: " + wow.previoushash);
+                }
+
+                //Console.WriteLine(jsonblock);
+                Console.WriteLine("JsonBlock");
+
                 HttpListenerRequest clientRequest = newContext.Request;
                 HttpListenerResponse serverResponse = newContext.Response;
 
@@ -108,6 +123,17 @@ namespace BBC
                 serverResponseOutput.Write(Encoding.Default.GetBytes(value), 0, value.Length);
                 //serverResponse.Close();
                 Console.WriteLine("Response send! \n");
+
+                HttpListenerRequest clientRequest = newContext.Request;
+                HttpListenerResponse serverResponse = newContext.Response;
+
+                serverResponse.StatusCode = (int)HttpStatusCode.OK;
+                serverResponse.ContentType = "text/html";
+
+                Stream serverResponseOutput = serverResponse.OutputStream;
+                serverResponseOutput.Write(Encoding.Default.GetBytes(value), 0, value.Length);
+                //serverResponse.Close();
+                Console.WriteLine("Response send! \n");*/
             }
 
 
@@ -134,8 +160,8 @@ namespace BBC
             
             Console.ReadKey();
             */
+            }
         }
-    }
 }
 
             /*
