@@ -15,9 +15,21 @@ namespace BBC
 
         LinkedList<Transaction> currentTransactions = new LinkedList<Transaction>();
 
-        public int Count => throw new NotImplementedException();
+        int ICollection<Block>.Count
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
 
-        public bool IsReadOnly => throw new NotImplementedException();
+        bool ICollection<Block>.IsReadOnly
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
 
         public IEnumerator<Block> GetEnumerator()
         {
