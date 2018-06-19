@@ -68,6 +68,21 @@ namespace BBC
             {
                 Console.WriteLine("Waiting for a new conection...");
                 HttpListenerContext newContext = _httpListener.GetContext();
+                HttpListenerRequest newRequest = newContext.Request;
+
+
+                // test writing data to console instead of browser
+                string blockcontents;
+                using (Stream receiveStream = newRequest.InputStream)
+                {
+                    using (StreamReader readStream = new StreamReader(receiveStream, Encoding.UTF8))
+                    {
+                        blockcontents = readStream.ReadToEnd();
+                    }
+                }
+                Console.WriteLine(blockcontents);
+                // end test
+
                 Console.WriteLine("Someone Connected!");
                 int x = 0;
                 while (x == 0)
