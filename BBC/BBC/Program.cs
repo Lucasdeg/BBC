@@ -63,7 +63,7 @@ namespace BBC
             Console.WriteLine("Server started.");
             //Thread _responseThread = new Thread(ResponseThread);
             //_responseThread.Start(); // start the response thread
-
+            
             while (true)
             {
                 Console.WriteLine("Waiting for a new conection...");
@@ -82,15 +82,22 @@ namespace BBC
                 }
                 Console.WriteLine(blockcontents);
                 // end test
+                HttpListenerRequest clientRequest = newContext.Request;
+                HttpListenerResponse serverResponse = newContext.Response;
 
-                Console.WriteLine("Someone Connected!");
+                serverResponse.StatusCode = (int)HttpStatusCode.OK;
+                serverResponse.ContentType = "text/html";
+                
                 int x = 0;
                 while (x == 0)
                 {
+                    Stream serverResponseOutput = serverResponse.OutputStream;
+                    serverResponseOutput.Write(Encoding.Default.GetBytes(value), 0, value.Length);
+                    Console.WriteLine("Response send! \n");
 
                     Console.WriteLine("Welcome to the BigBlockChain");
                     Console.WriteLine("What do you want to do?");
-                    Console.WriteLine("press[q] to exit, press[r] to read the block, press[a] to add a block, press[c] to get the current block");
+                    Console.WriteLine("press[q] to quit, press[r] to read the block, press[a] to add a block, press[c] to get the current block");
                     string s = Console.ReadLine();
                     if (s == "q")
                     {
@@ -104,15 +111,17 @@ namespace BBC
                     }
                     else if (s == "a")
                     {
+                        Console.WriteLine("Message>>>");
                         string message = Console.ReadLine();
                         MikaBlock.AddBlock(new Block(MikaBlock.LatestBlockIndex() + 1, message, MikaBlock.LatestBlock().CurrentBlockHash(), timestamp.GetTimestamp(DateTime.Now)));
+                        MikaBlock.IsChainValid();
                     }
                     else if (s == "c")
                     {
                         MikaBlock.CurrentBlockPrinter();
                     }
                 }
-
+                
                 /*string value2 = JsonConvert.SerializeObject(MikaBlock);//.LatestBlock());//.CurrentBlockData());
 
                 //Console.WriteLine(value);
@@ -127,32 +136,12 @@ namespace BBC
 
                 //Console.WriteLine(jsonblock);
                 Console.WriteLine("JsonBlock");
+                */
 
-                HttpListenerRequest clientRequest = newContext.Request;
-                HttpListenerResponse serverResponse = newContext.Response;
-
-                serverResponse.StatusCode = (int)HttpStatusCode.OK;
-                serverResponse.ContentType = "text/html";
-
-                Stream serverResponseOutput = serverResponse.OutputStream;
-                serverResponseOutput.Write(Encoding.Default.GetBytes(value), 0, value.Length);
-                //serverResponse.Close();
-                Console.WriteLine("Response send! \n");
-
-                HttpListenerRequest clientRequest = newContext.Request;
-                HttpListenerResponse serverResponse = newContext.Response;
-
-                serverResponse.StatusCode = (int)HttpStatusCode.OK;
-                serverResponse.ContentType = "text/html";
-
-                Stream serverResponseOutput = serverResponse.OutputStream;
-                serverResponseOutput.Write(Encoding.Default.GetBytes(value), 0, value.Length);
-                //serverResponse.Close();
-                Console.WriteLine("Response send! \n");*/
             }
 
 
-
+            
             
 
             /*
