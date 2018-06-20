@@ -81,11 +81,26 @@ namespace BBC
                 Console.WriteLine( data.CurrentBlockData());
                 Console.WriteLine("----------------------");
             }
-            ;
+        }
+        public void AllBlocksData()
+        {
+            Console.WriteLine("---------------------------------------------------");
+            foreach (var data in chain)
+
+            {
+
+                Console.WriteLine("Index:........." + data.index);
+                Console.WriteLine("Timestamp:....." + data.time);
+                Console.WriteLine("Currentdata:..." + data.CurrentBlockData());
+                Console.WriteLine("CurrentHash:..." + data.CurrentBlockHash());
+                Console.WriteLine("PreviousHash:.." + data.PreviousHash());
+                Console.WriteLine("---------------------------------------------------");
+            }
         }
 
-        //printing everthing in the block
-        public void CurrentBlockPrinter()
+
+            //printing everthing in the block
+            public void CurrentBlockPrinter()
         {
             Console.WriteLine("Index:........." + chain.Last.Value.index);
             Console.WriteLine("Timestamp:....." + chain.Last.Value.time);

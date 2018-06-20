@@ -97,7 +97,7 @@ namespace BBC
 
                     Console.WriteLine("Welcome to the BigBlockChain");
                     Console.WriteLine("What do you want to do?");
-                    Console.WriteLine("press[q] to quit, press[r] to read the block, press[a] to add a block, press[c] to get the current block");
+                    Console.WriteLine("press[q] to quit, [r] to read the block,[R] to read the full block,[a] to add a block,[c] to get the current block");
                     string s = Console.ReadLine();
                     if (s == "q")
                     {
@@ -109,9 +109,13 @@ namespace BBC
                         //checking if the blockchain is tampered with
                         MikaBlock.IsChainValid();
                     }
+                    else if (s == "R")
+                    {
+                        MikaBlock.AllBlocksData();
+                    }
                     else if (s == "a")
                     {
-                        Console.WriteLine("Message>>>");
+                        Console.Write("Message>>>");
                         string message = Console.ReadLine();
                         MikaBlock.AddBlock(new Block(MikaBlock.LatestBlockIndex() + 1, message, MikaBlock.LatestBlock().CurrentBlockHash(), timestamp.GetTimestamp(DateTime.Now)));
                         MikaBlock.IsChainValid();
