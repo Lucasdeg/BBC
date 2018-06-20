@@ -55,6 +55,17 @@ namespace BBC
             }
             */
 
+
+            //
+            // testing private / public key
+            // 
+            /*string _privatekey = Keys.Encrypt("Let's see..");
+            string _decryptedkey = Keys.Decrypt(_privatekey);
+            Console.WriteLine(_privatekey);
+            Console.WriteLine(_decryptedkey);
+            */
+
+
             Console.WriteLine("Starting server...");
             _httpListener.Prefixes.Add("http://*:80/"); // add prefix "http://localhost:5000/"
             _httpListener.Start(); // start server (Run application as Administrator!)
