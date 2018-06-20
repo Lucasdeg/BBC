@@ -82,7 +82,7 @@ namespace BBC
                 Console.WriteLine("----------------------");
             }
         }
-        public void AllBlocksData()
+        public void AllBlocksPrint()
         {
             Console.WriteLine("---------------------------------------------------");
             foreach (var data in chain)
@@ -97,10 +97,19 @@ namespace BBC
                 Console.WriteLine("---------------------------------------------------");
             }
         }
+        public string AllBlocksData()
+        {
+            string currentData = "";
+            foreach (var data in chain)
+            {
+                currentData += data.index + ": " + data.CurrentBlockData() + " ";
+            }
+            return currentData;
+        }
 
 
-            //printing everthing in the block
-            public void CurrentBlockPrinter()
+        //printing everthing in the block
+        public void CurrentBlockPrinter()
         {
             Console.WriteLine("Index:........." + chain.Last.Value.index);
             Console.WriteLine("Timestamp:....." + chain.Last.Value.time);

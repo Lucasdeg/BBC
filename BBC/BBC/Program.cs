@@ -42,11 +42,12 @@ namespace BBC
             BBC.AddBlock(new Block(4, "What a time to be alive", BBC.LatestBlock().CurrentBlockHash(), timestamp.GetTimestamp(DateTime.Now)));
             BBC.AddBlock(new Block(5, "This block is made in the future", BBC.LatestBlock().CurrentBlockHash(), "32-5-2018...55:55"));
 
-            string value = JsonConvert.SerializeObject(BBC);//.LatestBlock());//.CurrentBlockData());
+            string BBCJson = JsonConvert.SerializeObject(BBC.AllBlocksData());//.LatestBlock());//.CurrentBlockData());
+
 
             //Console.WriteLine(value);
 
-            List<Block> jsonblock = JsonConvert.DeserializeObject<List<Block>>(value);
+            //List<Block> jsonblock = JsonConvert.DeserializeObject<List<Block>>(BBCJson);
             //MikaBlock.AddBlock(jsonblock);
 
             /*foreach(Block wow in jsonblock)
@@ -98,8 +99,8 @@ namespace BBC
                 serverResponse.ContentType = "text/html";
 
 
-                Stream serverResponseOutputt = serverResponse.OutputStream;
-                serverResponseOutputt.Write(Encoding.Default.GetBytes(value), 0, value.Length);
+                Stream serverResponseOutput = serverResponse.OutputStream;
+                serverResponseOutput.Write(Encoding.Default.GetBytes(BBCJson), 0, BBCJson.Length);
                 int x = 0;
                 Console.WriteLine("Welcome to the BigBlockChain");
                 while (x == 0)
@@ -135,8 +136,10 @@ namespace BBC
                     }
                     else if (s == "s")
                     {
-                        Stream serverResponseOutput = serverResponse.OutputStream;
-                        serverResponseOutput.Write(Encoding.Default.GetBytes(value), 0, value.Length);
+                        
+                        string lastBlockJson = JsonConvert.SerializeObject(BBC.LatestBlock().CurrentBlockData());
+                        lastBlockJson += "\n";
+                        serverResponseOutput.Write(Encoding.Default.GetBytes(lastBlockJson), 0, lastBlockJson.Length);
                         Console.WriteLine("Block send!");
                     }
                 }
