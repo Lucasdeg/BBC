@@ -34,28 +34,26 @@ namespace BBC
         {
             Times timestamp = new Times();
             //creating the blockchain
-            Blockchain MikaBlock = new Blockchain();
+            Blockchain BBC = new Blockchain();
             //adding blocks
-            MikaBlock.AddBlock(new Block(1, "data block1", MikaBlock.LatestBlock().CurrentBlockHash(), "20-5-2018...12:00"));
-            MikaBlock.AddBlock(new Block(2, "data block2", MikaBlock.LatestBlock().CurrentBlockHash(), "24-5-2018...9:10"));
-            MikaBlock.AddBlock(new Block(3, "data block3", MikaBlock.LatestBlock().CurrentBlockHash(), "30-5-2018...10:20"));
-            MikaBlock.AddBlock(new Block(4, "made this second", MikaBlock.LatestBlock().CurrentBlockHash(), timestamp.GetTimestamp(DateTime.Now)));
-            MikaBlock.AddBlock(new Block(5, "made newer", MikaBlock.LatestBlock().CurrentBlockHash(), "32-5-2018...55:55"));
+            BBC.AddBlock(new Block(1, "Hello This is a test for the first block in the chain", BBC.LatestBlock().CurrentBlockHash(), "20-5-2018...12:00"));
+            BBC.AddBlock(new Block(2, "Hi what a nice first message!", BBC.LatestBlock().CurrentBlockHash(), "24-5-2018...9:10"));
+            BBC.AddBlock(new Block(3, "Data is send to the chain", BBC.LatestBlock().CurrentBlockHash(), "30-5-2018...10:20"));
+            BBC.AddBlock(new Block(4, "What a time to be alive", BBC.LatestBlock().CurrentBlockHash(), timestamp.GetTimestamp(DateTime.Now)));
+            BBC.AddBlock(new Block(5, "This block is made in the future", BBC.LatestBlock().CurrentBlockHash(), "32-5-2018...55:55"));
 
-            string value = JsonConvert.SerializeObject(MikaBlock);//.LatestBlock());//.CurrentBlockData());
+            string value = JsonConvert.SerializeObject(BBC);//.LatestBlock());//.CurrentBlockData());
 
             //Console.WriteLine(value);
 
             List<Block> jsonblock = JsonConvert.DeserializeObject<List<Block>>(value);
             //MikaBlock.AddBlock(jsonblock);
 
-            foreach(Block wow in jsonblock)
+            /*foreach(Block wow in jsonblock)
             {
                 Console.WriteLine("Index: " + wow.index + "\r\n Message: " + wow.CurrentBlockData() + "\r\n currenthash: " + wow.currenthash + "\r\n previoushash: " + wow.previoushash + "\r\n------------");
             }
-
-            //Console.WriteLine(jsonblock);
-            Console.WriteLine("JsonBlock");
+            */
 
             Console.WriteLine("Starting server...");
             _httpListener.Prefixes.Add("http://*:80/"); // add prefix "http://localhost:5000/"
@@ -87,17 +85,22 @@ namespace BBC
 
                 serverResponse.StatusCode = (int)HttpStatusCode.OK;
                 serverResponse.ContentType = "text/html";
-                
+
+
+                Stream serverResponseOutputt = serverResponse.OutputStream;
+                serverResponseOutputt.Write(Encoding.Default.GetBytes(value), 0, value.Length);
                 int x = 0;
+                Console.WriteLine("Welcome to the BigBlockChain");
                 while (x == 0)
                 {
-                    Stream serverResponseOutput = serverResponse.OutputStream;
-                    serverResponseOutput.Write(Encoding.Default.GetBytes(value), 0, value.Length);
-                    Console.WriteLine("Response send! \n");
-
-                    Console.WriteLine("Welcome to the BigBlockChain");
+                    Console.WriteLine("------------------------------");
                     Console.WriteLine("What do you want to do?");
-                    Console.WriteLine("press[q] to quit, [r] to read the block,[R] to read the full block,[a] to add a block,[c] to get the current block");
+                    Console.WriteLine("Press [r] to read the blockdata");
+                    Console.WriteLine("Press [R] to read the full block");
+                    Console.WriteLine("Press [a] to add a block");
+                    Console.WriteLine("Press [s] to send the data to the Blockchain");
+                    Console.WriteLine("Press [q] to quit,");
+                    Console.WriteLine("------------------------------");
                     string s = Console.ReadLine();
                     if (s == "q")
                     {
@@ -105,24 +108,25 @@ namespace BBC
                     }
                     else if (s == "r")
                     {
-                        MikaBlock.AllBlocks();
-                        //checking if the blockchain is tampered with
-                        MikaBlock.IsChainValid();
+                        BBC.AllBlocks();
                     }
                     else if (s == "R")
                     {
-                        MikaBlock.AllBlocksData();
+                        BBC.AllBlocksData();
                     }
                     else if (s == "a")
                     {
                         Console.Write("Message>>>");
                         string message = Console.ReadLine();
-                        MikaBlock.AddBlock(new Block(MikaBlock.LatestBlockIndex() + 1, message, MikaBlock.LatestBlock().CurrentBlockHash(), timestamp.GetTimestamp(DateTime.Now)));
-                        MikaBlock.IsChainValid();
+                        BBC.AddBlock(new Block(BBC.LatestBlockIndex() + 1, message, BBC.LatestBlock().CurrentBlockHash(), timestamp.GetTimestamp(DateTime.Now)));
+                        //checking if the blockchain is tampered with
+                        BBC.IsChainValid();
                     }
-                    else if (s == "c")
+                    else if (s == "s")
                     {
-                        MikaBlock.CurrentBlockPrinter();
+                        Stream serverResponseOutput = serverResponse.OutputStream;
+                        serverResponseOutput.Write(Encoding.Default.GetBytes(value), 0, value.Length);
+                        Console.WriteLine("Block send!");
                     }
                 }
                 
