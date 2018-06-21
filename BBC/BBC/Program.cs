@@ -124,7 +124,7 @@ namespace BBC
                     }
                     else if (s == "R")
                     {
-                        BBC.AllBlocksData();
+                        BBC.AllBlocksPrint();
                     }
                     else if (s == "a")
                     {
